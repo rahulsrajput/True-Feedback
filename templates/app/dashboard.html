@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}True Feedback{% endblock %}
+
+{% block content %}
+<div class="section">
+
+    <!-- heading -->
+    <div class="row mt-5">
+        <div class="col">
+            <h1>User Dashboard</h1>
+            <p>Copy Your Unique Link</p>
+        </div>
+    </div>
+
+    <!-- link copy -->
+    <div class="row">
+        <div class="col">
+            <div class="input-group">
+                <div class="form-outline">
+                    <input type="text" disabled class="form-control bg-light" id="user-link"
+                        value="http://127.0.0.1:8000/u/{{user}}">
+                </div>
+                <button type="button" class="btn btn-light mt-3" id="copy-button" data-mdb-ripple-init>Copy</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- button accept_messages -->
+    <div class="row mt-4">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col-12">
+                <div class="form-group">
+                    {% if status %}
+                    <p>Type 'False' To Stop Receiving Feedback</p>
+                    {% else %}
+                    <p>Type 'True' To Accept Feedback</p>
+                    {% endif %}
+                    <input type="text" class="form-control" name="status" value="" placeholder="Current Status: {{status}}">
+                </div>
+
+                {% for message in messages %}
+                <span style="color: red;">{{message}}</span>
+                {% endfor %}
+
+            </div>
+            <div class="col mt-3">
+                <button type="submit" class="btn btn-light">Update</button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+
+    <!-- msg cards -->
+    <div class="row mt-2 mb-5">
+        {% if comment_objects %}
+        {% for obj in comment_objects %}
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-heading">
+                    <form action="{% url 'delete-feedback' obj.uid %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="close position-absolute top-0 end-0 btn btn-danger" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </form>
+                </div>
+                <div class="card-body position-relative">
+                    <h3 class="message">{{obj.message}}</h3>
+                    <span class="timestamp">{{obj.created_at}}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h4>No feedback to display</h4>
+        {% endif %}
+    </div>
+
+
+
+
+    <!-- Toast -->
+    <div aria-live="polite" aria-atomic="true" class="position-fixed bottom-0 end-0 p-3" id="toast-container">
+        <div class="toast bg-light text-dark" id="copy-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Link copied to clipboard!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

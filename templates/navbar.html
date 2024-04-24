@@ -1,0 +1,42 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand fs-4" href="{% url 'home' %}">True Feedback</a>
+
+
+        <!-- Toggle button -->
+        <button data-mdb-collapse-init class="navbar-toggler" type="button" data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse " id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+
+            <div class="d-flex align-items-center">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
+                    {% if request.user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <li class="nav-item">
+                            <button class="nav-link">Logout</button>
+                        </li>
+                    </form>
+                    <li class="nav-item">
+                        <a class="nav-link">{{request.user}}</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a  href="{% url 'sign-in' %}" data-mdb-ripple-init class="btn btn-light px-3 me-2">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

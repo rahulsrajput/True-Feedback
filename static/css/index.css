@@ -1,0 +1,112 @@
+.container {
+  max-width: 982px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.custom-container {
+  max-width: 882px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.custom-container .form-control{
+  line-height: 2rem;
+  height: 200px;
+  border: 1px solid black;
+}
+
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  /* Make sure the container takes up the full height of the viewport */
+}
+
+
+.card {
+  margin-top: 50px; /* Adjust as needed */
+  padding: 15px;
+  min-height: 180px;
+}
+
+
+.custom-card {
+  width: 100%;
+  /* Use percentage for responsiveness */
+  max-width: 500px;
+  /* Set maximum width */
+  height: auto;
+  /* Let height adjust based on content */
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  /* Use flexbox */
+  flex-wrap: wrap;
+  background-color: white;
+  color: black;
+}
+
+.heading {
+  flex: 1;
+  /* Allow heading to take remaining space */
+  font-size: 18px;
+  /* Adjust font size as needed */
+  margin: 0;
+  /* Remove default margin */
+}
+
+
+.message {
+  flex: 1;
+  /* Allow message to take remaining space */
+  margin-bottom: 2px;
+}
+
+.timestamp {
+  color: #666;
+  font-size: 14px;
+  margin-top: 5px;
+  /* Add margin for spacing */
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  .custom-card {
+    width: 800px;
+    /* Adjust max-width for larger screens */
+  }
+}
+
+
+
+
+
+/*  */
+.card .form-control {
+  line-height: 2rem;
+}
+
+.form-label-left {
+  text-align: left;
+}
+
+
+/*  */
+@media (max-width: 575.98px) {
+  #toast-container {
+      bottom: 0;
+      top: auto;
+      max-width: calc(100% - 16px); /* Adjust as needed */
+  }
+}
+
+
+
+.navbar .navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 0 0;
+}
